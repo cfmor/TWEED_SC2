@@ -23,6 +23,15 @@ def load_data(files):
         df['temperature_2m'] = (df['temperature_2m'] - 32)*5/9 + 273.15
         df['dewpoint_2m'] = (df['dewpoint_2m'] - 32)*5/9 + 273.15
         
+        # Transform the wind direction
+        df['wdcos_10'] = np.cos(np.radians(df['winddirection_10m']))
+        df['wdsin_10'] = np.sin(np.radians(df['winddirection_10m']))
+
+        df['wdcos_100'] = np.cos(np.radians(df['winddirection_100m']))
+        df['wdsin_100'] = np.sin(np.radians(df['winddirection_100m']))
+
+        df.drop(['winddirection_10m', 'winddirection_100m'], axis=1, inplace=True)
+
         df_list.append(df)
     
     # Concatenate all dataframes into one
