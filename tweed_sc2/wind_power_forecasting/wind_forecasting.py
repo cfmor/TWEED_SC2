@@ -1,0 +1,24 @@
+"""
+TWEED Special Course 2 - Machine Learning
+Wind Forecasting Example
+
+Carlos, Kenza, Bassey and Kelley
+"""
+
+# 1) Load the data into a pandas DataFrame retaining the location
+files = [
+    './inputs/Location1_train.csv', 
+    './inputs/Location2_train.csv', 
+    './inputs/Location3_train.csv', 
+    './inputs/Location4_train.csv'
+]
+
+from data_io import load_data
+data = load_data(files)
+
+# 2) Plot timeseries of a selected variable (like wind_speed_100m or Power) 
+# for a given site (site 1, 2, 3 or 4) within a specific perid, i.e., a function 
+# with variable_name, site_index, starting_time and ending_time as inputs.
+
+from plot_data import plot_location_power
+plot_location_power(data)
