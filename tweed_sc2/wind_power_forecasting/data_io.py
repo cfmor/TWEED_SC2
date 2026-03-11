@@ -16,7 +16,13 @@ def load_data(files):
         df['Location'] = loc_name
         
         # Convert 'Time' to datetime objects for better analysis
-        df['Time'] = pd.to_datetime(df['Time'])
+        df['Time'] = pd.to_datetime(df['Time'],  format="%Y-%m-%d %H:%M:%S")
+        df = df.set_index('Time')
+        
+        # Convert temperature and dew point to °K
+        df['temperature_2m'] = (df['temperature_2m'] - 32)*5/9 + 273.15
+        df['dewpoint_2m'] = (df['dewpoint_2m'] - 32)*5/9 + 273.15
+        
         df_list.append(df)
     
     # Concatenate all dataframes into one
