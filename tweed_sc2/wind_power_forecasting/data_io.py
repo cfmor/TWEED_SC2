@@ -1,4 +1,5 @@
 import pandas as pd
+import numpy as np
 
 def load_data(files):
     """
@@ -30,7 +31,7 @@ def load_data(files):
         df['wdcos_100'] = np.cos(np.radians(df['winddirection_100m']))
         df['wdsin_100'] = np.sin(np.radians(df['winddirection_100m']))
 
-        df.drop(['winddirection_10m', 'winddirection_100m'], axis=1, inplace=True)
+        # df.drop(['winddirection_10m', 'winddirection_100m'], axis=1, inplace=True)
 
         df_list.append(df)
     
