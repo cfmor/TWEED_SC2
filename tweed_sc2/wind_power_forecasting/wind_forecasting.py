@@ -21,15 +21,20 @@ data = load_data(files)
 # with variable_name, site_index, starting_time and ending_time as inputs.
 
 from plot_data import plot_location_data
-plot_location_data(data,'Power')
-plot_location_data(data,'windspeed_10m')
-plot_location_data(data,'windspeed_100m')
-plot_location_data(data,'windgusts_10m')
-plot_location_data(data,'winddirection_10m')
-plot_location_data(data,'winddirection_100m')
-plot_location_data(data,'temperature_2m')
-plot_location_data(data,'dewpoint_2m')
-plot_location_data(data,'relativehumidity_2m')
+plot_location_data(data,'Power','Location1')
+plot_location_data(data,'windspeed_100m','Location1')
+
+
+from plot_data import plot_all_location_data
+plot_all_location_data(data,'Power')
+plot_all_location_data(data,'windspeed_10m')
+plot_all_location_data(data,'windspeed_100m')
+plot_all_location_data(data,'windgusts_10m')
+plot_all_location_data(data,'wdcos_10')
+plot_all_location_data(data,'wdcos_100')
+plot_all_location_data(data,'temperature_2m')
+plot_all_location_data(data,'dewpoint_2m')
+plot_all_location_data(data,'relativehumidity_2m')
 
 #3) Compute mean squared error (MSE), mean absolute error (MAE), and root mean 
 # square error (RMSE) for a forecasted time series against the corresponding real time series.
