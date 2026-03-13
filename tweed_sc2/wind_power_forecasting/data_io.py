@@ -18,7 +18,7 @@ def load_data(files):
         
         # Convert 'Time' to datetime objects for better analysis
         df['Time'] = pd.to_datetime(df['Time'],  format="%Y-%m-%d %H:%M:%S")
-        # df = df.set_index('Time')
+        # df = df.set_index('Time').sort_index()
         
         # Convert temperature and dew point to °K
         df['temperature_2m'] = (df['temperature_2m'] - 32)*5/9 + 273.15

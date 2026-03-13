@@ -1,14 +1,23 @@
 import matplotlib.pyplot as plt
-
+import pandas as pd
     
-def plot_location_data(df, col, loc):
+def plot_location_data(df, col, loc, time_s, time_e):
     """
     Loads dataframe and plots Time vs datastream for one location.
     """
     
     loc_data = df[df['Location'] == loc]
-    plt.plot(loc_data.index, loc_data[col], color='tab:blue', lw=0.5)
+
+    time_s =  pd.to_datetime(time_s,  format="%Y-%m-%d %H:%M:%S")
+    time_e =  pd.to_datetime(time_e,  format="%Y-%m-%d %H:%M:%S")
+    loc_data = loc_data.set_index('Time').sort_index()
+
+    time_data = loc_data.loc[str(time_s):str(time_e)]
+
+    # plt.plot(loc_data.index, loc_data[col], color='tab:blue', lw=0.5)
+    plt.plot(time_data.index, time_data[col], color='tab:blue', lw=0.5)
     plt.title(f'{loc}', fontsize=14)
+
     if col == 'Power':
         plt.ylabel(col + ' (%)')
     elif col == 'windspeed_10m' or col == 'windspeed_100m' or col == 'windgusts_10m':
@@ -23,6 +32,7 @@ def plot_location_data(df, col, loc):
         plt.ylabel(col+' (K)')
     plt.grid(True, linestyle='--', alpha=0.6)
 
+    plt.gcf().autofmt_xdate()
     plt.xlabel('Timestamp')
     plt.tight_layout()
 
